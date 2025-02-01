@@ -1,3 +1,115 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-main font-poppins;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-volkhov;
+  }
+}
+
+@layer components {
+  .btn-login {
+    @apply text-primary w-btn-login;
+  }
+
+  .btn-discover {
+    @apply text-primary border-primary w-btn-discover;
+  }
+
+  .btn-signup {
+    @apply bg-primary text-white w-btn-signup;
+  }
+
+  .floating-card {
+    @apply bg-white rounded-1.5vh border-transparent shadow-floating;
+  }
+
+  .explore-btn {
+    @apply bg-primary h-14 w-full text-white rounded;
+  }
+
+  .section-padding {
+    @apply py-section;
+  }
+
+  .things-you-need {
+    @apply pb-100 bg-bg-alt;
+  }
+
+  .deals-discounts,
+  .vacation-plan {
+    @apply mt-100 pb-100;
+  }
+
+  .card-icon-top {
+    @apply h-card-icon w-card-icon;
+  }
+
+  .svg-star {
+    @apply text-star-yellow;
+  }
+
+  .svg-location {
+    @apply text-gray-light;
+  }
+
+  .svg-right-arrow {
+    @apply text-primary h-arrow !important;
+  }
+
+  .svg-left-arrow {
+    @apply text-gray-medium h-arrow !important;
+  }
+
+  .lead-dot {
+    @apply h-lead-dot !important;
+  }
+
+  .side-dot {
+    @apply h-side-dot !important;
+  }
+
+  .cursor-icon {
+    @apply text-primary;
+  }
+
+  .position-relative {
+    @apply relative w-overlay-container;
+  }
+
+  .overlay-image {
+    @apply absolute top-0 left-0 w-full opacity-100;
+  }
+
+  .card-exclusive {
+    @apply border border-[#c0b7b79c] bg-white !important;
+  }
+
+  .background-image-top-right,
+  .background-image-bottom-left {
+    @apply absolute bg-no-repeat bg-cover;
+  }
+
+  .card-signup,
+  .card-exciting {
+    @apply bg-card-signup;
+  }
+
+  .card-worth {
+    @apply bg-card-worth;
+  }
+
+  .image-left {
+    @apply absolute left-[70%];
+  }
+}

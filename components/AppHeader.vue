@@ -3,4 +3,5 @@
   <p class="font-inter text-lg">This text uses Inter font family</p>
   <p class="font-poppins text-lg">This text uses Poppins font family</p>
   <p class="font-roboto text-lg">This text uses Roboto font family</p>
+  <img src="/img/Blog-card-3.png" alt="Sample PNG" class="w-24 h-24" />
 </template>
