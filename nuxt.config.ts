@@ -7,8 +7,14 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+  pages: true,
   css: ["~/assets/css/main.css"],
-  modules: ["@nuxtjs/tailwindcss", "@nuxt/image", "@nuxt/icon"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxt/image",
+    "@nuxt/icon",
+    "@nuxtjs/supabase",
+  ],
   app: {
     head: {
       link: [

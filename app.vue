@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <Navbar />
-    <Hero />
-    <ThingsToDo />
-    <Footer />
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
