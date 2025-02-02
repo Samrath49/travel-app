@@ -43,7 +43,8 @@ export default {
         "card-worth": "url('../img/Vector4856.png')",
       },
       padding: {
-        section: "8rem",
+        section: "5rem",
+        "section-sm": "3rem",
       },
       height: {
         "card-icon": "50px",

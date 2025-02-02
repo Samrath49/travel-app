@@ -1,10 +1,10 @@
 <template>
   <header class="bg-bg-special">
     <!-- Desktop Navigation -->
-    <nav class="container mx-auto pt-4 px-4 h-20">
+    <nav class="container mx-auto px-4 pt-0 md:pt-8 h-20">
       <div class="flex items-center justify-between h-full">
         <!-- Logo -->
-        <div class="flex-shrink-0">
+        <div class="flex-shrink-0 pt-5">
           <NuxtLink to="/">
             <NuxtImg src="/icons/logo.svg" alt="Logo" class="h-12" />
           </NuxtLink>
@@ -16,7 +16,7 @@
             v-for="item in menuItems"
             :key="item.path"
             :to="item.path"
-            class="text-lg font-semibold text-gray-800 hover:text-primary transition-colors"
+            class="text-xl font-inter font-normal text-gray-800 hover:text-primary transition-colors"
           >
             {{ item.label }}
           </NuxtLink>
@@ -60,14 +60,14 @@
 
       <!-- Sidebar -->
       <div
-        class="fixed top-0 right-0 w-64 h-full bg-white transform transition-transform duration-200"
+        class="fixed top-0 right-0 w-64 pt-6 h-full bg-white transform transition-transform duration-200"
         :class="isOpen ? 'translate-x-0' : 'translate-x-full'"
         @click.stop
       >
         <!-- Close Button -->
         <button
           @click="isOpen = false"
-          class="absolute top-2 px-2 py-1 right-4 rounded-full hover:bg-gray-100 transition-colors"
+          class="absolute top-6 px-2 py-1 right-4 rounded-full hover:bg-gray-100 transition-colors"
           aria-label="Close menu"
         >
           <Icon

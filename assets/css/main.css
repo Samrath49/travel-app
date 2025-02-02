@@ -34,6 +34,14 @@
     @apply bg-primary text-white w-btn-signup;
   }
 
+  .heading {
+    @apply text-[42px] sm:text-[65px] lg:text-[75px] font-normal text-gray-800 leading-tight;
+  }
+
+  .description {
+    @apply text-lg sm:text-xl lg:text-2xl text-gray-600;
+  }
+
   .floating-card {
     @apply bg-white rounded-1.5vh border-transparent shadow-floating;
   }
@@ -43,7 +51,7 @@
   }
 
   .section-padding {
-    @apply py-section;
+    @apply py-section-sm md:py-section;
   }
 
   .things-you-need {

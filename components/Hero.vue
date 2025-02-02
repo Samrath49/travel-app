@@ -1,14 +1,14 @@
 <template>
-  <section id="get-started" class="py-section">
-    <div class="container mx-auto px-6 lg:px-16">
+  <section id="get-started" class="section-padding">
+    <div class="container mx-auto px-4">
       <!-- Hero Content -->
       <div class="flex flex-col lg:flex-row items-center">
-        <div class="lg:w-1/2 text-center lg:text-left mt-10">
-          <h1 class="text-[50px] sm:text-[65px] lg:text-[75px] font-bold">
+        <div class="lg:w-1/2 text-left mt-10">
+          <h1 class="heading">
             Get started your exciting
             <span class="text-primary">journey</span> with us.
           </h1>
-          <p class="text-lg sm:text-xl lg:text-2xl text-gray-500 mt-5">
+          <p class="description mt-5">
             A Team of experienced tourism professionals will<br
               class="hidden lg:block"
             />
@@ -22,12 +22,12 @@
 
         <!-- Hero Images -->
         <div class="relative lg:w-1/2 mt-10 lg:mt-0">
-          <img
+          <NuxtImg
             src="/img/Main.png"
             class="img-fluid mx-auto"
             alt="main-img-background"
           />
-          <img
+          <NuxtImg
             src="/img/Background-main.png"
             class="overlay-image absolute top-0 left-0"
             alt="main-img"
