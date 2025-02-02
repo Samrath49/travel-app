@@ -18,6 +18,10 @@
 }
 
 @layer components {
+  .container {
+    @apply w-full max-w-7xl mx-auto;
+  }
+  
   .btn-login {
     @apply text-primary w-btn-login;
   }

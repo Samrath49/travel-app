@@ -1,5 +1,7 @@
 <template>
   <div>
-    <AppHeader />
+    <Navbar />
+    <Hero />
+    <ThingsToDo />
   </div>
 </template>
