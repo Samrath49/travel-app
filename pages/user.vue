@@ -1,5 +1,5 @@
 <template>
   <div>
-    <p>Hi Welcome to our website</p>
+    <h1>Hi there valuable user!</h1>
   </div>
 </template>

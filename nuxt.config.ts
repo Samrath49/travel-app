@@ -10,11 +10,24 @@ export default defineNuxtConfig({
   pages: true,
   css: ["~/assets/css/main.css"],
   modules: [
-    "@nuxtjs/tailwindcss",
-    "@nuxt/image",
-    "@nuxt/icon",
     "@nuxtjs/supabase",
+    "@nuxt/image",
+    "@nuxtjs/tailwindcss",
+    "@nuxt/icon",
   ],
+  runtimeConfig: {
+    public: {
+      DEMO_USER_EMAIL: process.env.DEMO_USER_EMAIL,
+      DEMO_USER_PASSWORD: process.env.DEMO_USER_PASSWORD,
+    },
+  },
+  supabase: {
+    redirectOptions: {
+      login: "/login",
+      callback: "/confirm",
+      exclude: ["/"],
+    },
+  },
   app: {
     head: {
       link: [
