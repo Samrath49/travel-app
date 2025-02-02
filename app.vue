@@ -3,5 +3,6 @@
     <Navbar />
     <Hero />
     <ThingsToDo />
+    <Footer />
   </div>
 </template>

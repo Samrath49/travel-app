@@ -17,7 +17,9 @@
             />
             desire place.
           </p>
-          <a href="#" class="btn-discover inline-block mt-6">Discover now</a>
+          <div class="flex justify-start my-5">
+            <button class="explore-btn">Explore Now</button>
+          </div>
         </div>
 
         <!-- Hero Images -->
@@ -36,7 +38,7 @@
       </div>
 
       <!-- Floating Search Card -->
-      <div class="flex justify-center mt-16">
+      <!-- <div class="flex justify-center mt-16">
         <div
           class="floating-card w-full md:w-3/4 lg:w-2/3 p-6 grid grid-cols-1 md:grid-cols-4 gap-4"
         >
@@ -68,7 +70,7 @@
             <button class="explore-btn">Explore Now</button>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>

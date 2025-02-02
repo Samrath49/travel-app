@@ -51,7 +51,7 @@
   }
 
   .explore-btn {
-    @apply bg-primary h-14 w-full text-white rounded;
+    @apply bg-primary h-14 w-30 text-white rounded;
   }
 
   .section-padding {

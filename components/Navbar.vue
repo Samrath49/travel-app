@@ -6,7 +6,7 @@
         <!-- Logo -->
         <div class="flex-shrink-0 pt-5">
           <NuxtLink to="/">
-            <NuxtImg src="/icons/logo.svg" alt="Logo" class="h-12" />
+            <NuxtImg src="/icons/logo.svg" alt="Travel" class="h-12" />
           </NuxtLink>
         </div>
 
