@@ -38,8 +38,12 @@
     @apply text-[42px] sm:text-[65px] lg:text-[75px] font-normal text-gray-800 leading-tight;
   }
 
+  .heading-small {
+    @apply text-[30px] sm:text-[40px] lg:text-[50px] font-normal text-gray-800 leading-tight;
+  }
+
   .description {
-    @apply text-lg sm:text-xl lg:text-2xl text-gray-600;
+    @apply text-lg sm:text-xl lg:text-2xl text-gray-600 font-poppins;
   }
 
   .floating-card {
@@ -109,7 +113,7 @@
 
   .background-image-top-right,
   .background-image-bottom-left {
-    @apply absolute bg-no-repeat bg-cover;
+    @apply absolute bg-no-repeat bg-cover; 
   }
 
   .card-signup,
@@ -122,6 +126,6 @@
   }
 
   .image-left {
-    @apply absolute left-[70%];
+    @apply absolute top-20 right-[2%] md:right-[10%] md:top-2 -z-0;  
   }
 }

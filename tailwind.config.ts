@@ -38,7 +38,7 @@ export default {
         floating: "0px 2px 80px 2px rgba(0, 0, 0, 0.06)",
       },
       backgroundImage: {
-        "card-signup": "url('../img/Vector4855.png')",
+        "card-signup": "url('../img/Vector4857.png')",
         "card-exciting": "url('../img/Vector4857.png')",
         "card-worth": "url('../img/Vector4856.png')",
       },
