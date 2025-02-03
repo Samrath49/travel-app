@@ -139,7 +139,7 @@
 const isOpen = ref(false);
 
 const menuItems = [
-  { label: "Destination", path: "/destination" },
+  { label: "Discover", path: "/discover" },
   { label: "Tour", path: "/tour" },
 ];
 
