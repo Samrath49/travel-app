@@ -24,16 +24,18 @@
 
         <!-- Auth Buttons -->
         <div class="hidden md:flex items-center space-x-4">
-          <button
-            class="btn-login font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+          <NuxtLink
+            to="/login"
+            class="btn-login font-medium text-center px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
             Login
-          </button>
-          <button
-            class="btn-signup font-medium px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+          </NuxtLink>
+          <NuxtLink
+            to="/login"
+            class="btn-signup font-medium text-center px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
           >
             Sign up
-          </button>
+          </NuxtLink>
         </div>
 
         <!-- Mobile Menu Button -->

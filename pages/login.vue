@@ -1,9 +1,12 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useRuntimeConfig } from "#app";
+const router = useRouter();
+const user = useSupabaseUser();
 
 definePageMeta({
   layout: "custom",
+  middleware: "auth",
 });
 
 const props = defineProps({
@@ -16,6 +19,7 @@ const props = defineProps({
 
 const config = useRuntimeConfig();
 const currentMode = ref(props.mode);
+const { isLoggedIn } = useAuth();
 
 const supabase = useSupabaseClient();
 const email = ref("");
@@ -90,6 +94,12 @@ function signInWithDemo() {
     handleSubmit();
   }
 }
+
+watch(user, (newUser) => {
+  if (newUser) {
+    router.push("/profile");
+  }
+});
 </script>
 
 <template>
