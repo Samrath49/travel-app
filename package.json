@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "tree": "find . -maxdepth 4 \\( -type d -o -type f \\) ! -path \"./.*\" ! -path \"./node_modules*\" ! -path \"./public*\" ! -path \"./assets*\" | sed -e \"s/[^-][^\\/]*\\// |/g\" -e \"s/|\\([^ ]\\)/|-\\1/\" > PROJECT_TREE.md"
   },
   "dependencies": {
     "@nuxt/icon": "^1.10.3",
