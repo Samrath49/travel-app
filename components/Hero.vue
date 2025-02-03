@@ -18,7 +18,14 @@
             desire place.
           </p>
           <div class="flex justify-start my-5">
-            <button class="explore-btn">Explore Now</button>
+            <NuxtLink
+              to="/discover"
+              class="bg-primary flex items-center gap-1 text-white w-btn-signup font-medium text-center px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+              ><Icon
+                name="material-symbols:travel-explore"
+                class="size-5"
+              />Explore Now</NuxtLink
+            >
           </div>
         </div>
 

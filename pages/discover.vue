@@ -1,8 +1,15 @@
 <script setup>
+import { ref, onMounted } from "vue";
 definePageMeta({
   middleware: "auth",
 });
 
+const config = useRuntimeConfig();
+
+const autocompleteInput = ref(null);
+const predictions = ref([]);
+let autocompleteService = null;
+const emit = defineEmits(["place-selected"]);
 const destination = ref("");
 const duration = ref("");
 const selectedBudget = ref("");
@@ -66,6 +73,70 @@ const generateTrip = () => {
   });
 };
 
+onMounted(() => {
+  // Initialize Google Maps Autocomplete service
+  const script = document.createElement("script");
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${config.public.GOOGLE_PLACES_KEY}&libraries=places`;
+  script.async = true;
+  script.defer = true;
+
+  script.onload = () => {
+    autocompleteService = new google.maps.places.AutocompleteService();
+  };
+
+  document.head.appendChild(script);
+});
+
+const handleInput = async (event) => {
+  const input = event.target.value;
+
+  if (!input || !autocompleteService) {
+    predictions.value = [];
+    return;
+  }
+
+  try {
+    const response = await autocompleteService.getPlacePredictions({
+      input,
+      types: ["geocode", "establishment"],
+    });
+
+    predictions.value = response.predictions;
+  } catch (error) {
+    console.error("Error fetching place predictions:", error);
+    predictions.value = [];
+  }
+};
+
+const handleSelect = async (prediction) => {
+  const placesService = new google.maps.places.PlacesService(
+    document.createElement("div")
+  );
+
+  placesService.getDetails(
+    {
+      placeId: prediction.place_id,
+      fields: ["formatted_address", "geometry", "name"],
+    },
+    (place, status) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        // Save the selected place data to the destination ref
+        destination.value = {
+          name: place.name,
+          address: place.formatted_address,
+          location: {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng(),
+          },
+        };
+
+        // Update the input field with the formatted address
+        autocompleteInput.value.value = place.formatted_address;
+        predictions.value = [];
+      }
+    }
+  );
+};
 </script>
 
 <template>
@@ -90,13 +161,30 @@ const generateTrip = () => {
         >
           What is destination of choice?
         </label>
-        <input
-          type="text"
-          id="destination"
-          v-model="destination"
-          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="Enter destination"
-        />
+        <div class="relative">
+          <input
+            ref="autocompleteInput"
+            type="text"
+            placeholder="Enter destination..."
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            @input="handleInput"
+          />
+          <div
+            v-if="predictions.length > 0"
+            class="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg"
+          >
+            <ul>
+              <li
+                v-for="prediction in predictions"
+                :key="prediction.place_id"
+                class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                @click="handleSelect(prediction)"
+              >
+                {{ prediction.description }}
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- Duration Input -->

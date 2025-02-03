@@ -50,10 +50,6 @@
     @apply bg-white rounded-1.5vh border-transparent shadow-floating;
   }
 
-  .explore-btn {
-    @apply bg-primary h-14 w-30 text-white rounded;
-  }
-
   .section-padding {
     @apply py-section-sm md:py-section;
   }
