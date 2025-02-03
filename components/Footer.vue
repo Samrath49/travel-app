@@ -96,6 +96,6 @@ const currentYear = new Date().getFullYear();
 
 const footerItems = [
   { label: "Discover", path: "/discover" },
-  { label: "Tour", path: "/tour" },
+  { label: "My Tours", path: "/my-tours" },
 ];
 </script>

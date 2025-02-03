@@ -21,8 +21,10 @@ const formatDate = (timestamp) => {
     <h1 className="text-3xl font-bold mb-8">Profile</h1>
 
     <div className="flex items-center gap-4 mb-12">
-      <div className="bg-fuchsia-100 p-4 rounded-full">
-        <Icon name="ph:user" className="w-8 h-8 text-gray-600" />
+      <div
+        className="bg-primary/35 p-3 flex justify-center items-center rounded-full"
+      >
+        <Icon name="weui:me-filled" class="size-6" />
       </div>
       <div>
         <div className="text-lg">{{ userEmailAddress }}</div>
@@ -33,8 +35,7 @@ const formatDate = (timestamp) => {
     </div>
 
     <div className="mb-12">
-      <h2 className="text-2xl font-bold mb-6">Account Settings</h2>
-
+      <h2 className="text-2xl font-bold mb-6">Account Details</h2>
       <div className="flex items-center justify-between py-4 border-b">
         <div className="flex items-center gap-4">
           <Icon name="ph:envelope" className="w-6 h-6" />

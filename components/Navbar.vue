@@ -140,7 +140,7 @@ const isOpen = ref(false);
 
 const menuItems = [
   { label: "Discover", path: "/discover" },
-  { label: "Tour", path: "/tour" },
+  { label: "My Tours", path: "/my-tours" },
 ];
 
 const { isLoggedIn } = useAuth();
