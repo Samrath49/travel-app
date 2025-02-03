@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useRuntimeConfig } from "#app";
+import { NuxtLink } from "#components";
 const router = useRouter();
 const user = useSupabaseUser();
 
@@ -111,7 +112,13 @@ watch(user, (newUser) => {
     >
       <!-- Logo -->
       <div class="text-center">
-        <img class="mx-auto h-12 w-auto" src="/icons/logo.svg" alt="Logo" />
+        <NuxtLink to="/">
+          <NuxtImg
+            class="mx-auto h-12 w-auto"
+            src="/icons/logo.svg"
+            alt="Logo"
+          />
+        </NuxtLink>
       </div>
 
       <!-- Tabs -->

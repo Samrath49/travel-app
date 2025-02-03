@@ -25,12 +25,24 @@
         <!-- Auth Buttons -->
         <div class="hidden md:flex items-center space-x-4">
           <NuxtLink
+            v-if="isLoggedIn"
+            to="/profile"
+            class="flex items-center text-gray-800 hover:text-primary transition-colors"
+          >
+            <Icon name="ph:user-circle" class="size-6 mr-2" />
+            <span>Profile</span>
+          </NuxtLink>
+
+          <NuxtLink
+            v-if="!isLoggedIn"
             to="/login"
             class="btn-login font-medium text-center px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
           >
             Login
           </NuxtLink>
+
           <NuxtLink
+            v-if="!isLoggedIn"
             to="/login"
             class="btn-signup font-medium text-center px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
           >
@@ -93,17 +105,29 @@
           </div>
 
           <!-- Mobile Auth Buttons -->
-          <div class="mt-8 space-y-4">
-            <button
-              class="btn-login w-full font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+          <div class="mt-8 flex flex-col space-y-4">
+            <NuxtLink
+              v-if="isLoggedIn"
+              to="/profile"
+              class="flex w-full items-center text-gray-800 hover:text-primary transition-colors"
+            >
+              <Icon name="ph:user-circle" class="size-6 mr-2" />
+              <span>Profile</span>
+            </NuxtLink>
+            <NuxtLink
+              v-if="!isLoggedIn"
+              to="/login"
+              class="btn-login w-full font-medium text-center px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
             >
               Login
-            </button>
-            <button
-              class="btn-signup w-full font-medium px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+            </NuxtLink>
+            <NuxtLink
+              v-if="!isLoggedIn"
+              to="/login"
+              class="btn-signup w-full font-medium text-center px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
             >
               Sign up
-            </button>
+            </NuxtLink>
           </div>
         </div>
       </div>
@@ -118,4 +142,6 @@ const menuItems = [
   { label: "Destination", path: "/destination" },
   { label: "Tour", path: "/tour" },
 ];
+
+const { isLoggedIn } = useAuth();
 </script>

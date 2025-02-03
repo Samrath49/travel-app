@@ -47,8 +47,8 @@ const {
 
     <div className="text-center">
       <button
-        onClick="{{logout}}"
-        className="px-6 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+        @click="logout"
+        class="btn-login w-full font-medium text-center px-4 py-2 rounded-lg bg-gray-100 hover:bg-gray-300 transition-colors"
       >
         Logout
       </button>
