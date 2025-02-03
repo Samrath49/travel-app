@@ -105,13 +105,13 @@ watch(user, (newUser) => {
 
 <template>
   <div
-    class="min-h-screen flex items-center justify-center bg-gray-50 py-6 sm:py-12 px-2 sm:px-6 lg:px-8"
+    class="min-h-screen flex items-center justify-center bg-gray-50 py-6 md:py-10 px-4 lg:px-8"
   >
     <div
-      class="max-w-md w-full card floating-card shadow-xl py-10 sm:py-20 px-2 sm:px-5 space-y-6"
+      class="max-w-md w-full card floating-card shadow-xl py-10 sm:py-10 px-2 sm:px-5 space-y-6"
     >
       <!-- Logo -->
-      <div class="text-center">
+      <div class="pb-0 md:pb-2">
         <NuxtLink to="/">
           <NuxtImg
             class="mx-auto h-12 w-auto"

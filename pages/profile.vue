@@ -2,6 +2,7 @@
 definePageMeta({
   middleware: "auth",
 });
+
 const {
   isLoggedIn,
   userId,
@@ -10,6 +11,10 @@ const {
   memberSince,
   logout,
 } = useAuth();
+
+const formatDate = (timestamp) => {
+  return timestamp ? new Date(timestamp).toLocaleDateString() : "N/A";
+};
 </script>
 <template>
   <div className="max-w-2xl mx-auto p-8">
@@ -21,7 +26,9 @@ const {
       </div>
       <div>
         <div className="text-lg">{{ userEmailAddress }}</div>
-        <div className="text-gray-600">Member since {{ memberSince }}</div>
+        <div className="text-gray-600">
+          Member since {{ formatDate(memberSince) }}
+        </div>
       </div>
     </div>
 
@@ -41,7 +48,7 @@ const {
           <Icon name="ph:clock" className="w-6 h-6" />
           <span>Last Sign In</span>
         </div>
-        <span className="text-gray-600">{{ lastSignIn }}</span>
+        <span className="text-gray-600">{{ formatDate(lastSignIn) }}</span>
       </div>
     </div>
 
