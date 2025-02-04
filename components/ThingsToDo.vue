@@ -27,12 +27,12 @@
         </div>
       </div>
 
-      <!-- Steps Cards -->
+      <!-- Cards -->
       <ul
         class="w-full flex flex-col relative z-0 md:flex-row justify-center items-center gap-6 mt-12"
       >
         <li
-          v-for="(step, index) in steps"
+          v-for="(step, index) in THINGS_TO_DO_STEPS"
           :key="index"
           class="card floating-card min-w-25 max-w-[23rem] md:h-64 rounded-[3%] p-6 text-left"
           :class="step.bgClass"
@@ -55,26 +55,5 @@
 </template>
 
 <script setup>
-const steps = [
-  {
-    title: "Sign up",
-    description:
-      "Completes all the work associated with planning and processing",
-    icon: "/icons/Things-icon-1.png",
-    bgClass: "card-signup",
-  },
-  {
-    title: "Worth of money",
-    description:
-      "After successful access then book from exclusive deals & pricing",
-    icon: "/icons/Things-icon-2.png",
-    bgClass: "card-worth",
-  },
-  {
-    title: "Exciting travel",
-    description: "Start and explore a wide range of exciting travel experience",
-    icon: "/icons/Things-icon-3.png",
-    bgClass: "card-exciting",
-  },
-];
+import { THINGS_TO_DO_STEPS } from "~/constants";
 </script>

@@ -13,7 +13,7 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-8">
           <NuxtLink
-            v-for="item in menuItems"
+            v-for="item in LINK_ITEMS"
             :key="item.path"
             :to="item.path"
             class="text-xl font-inter font-normal text-gray-800 hover:text-primary transition-colors"
@@ -94,7 +94,7 @@
           <!-- Mobile Menu Items -->
           <div class="space-y-4">
             <NuxtLink
-              v-for="item in menuItems"
+              v-for="item in LINK_ITEMS"
               :key="item.path"
               :to="item.path"
               class="block text-lg font-semibold text-gray-800 hover:text-primary transition-colors"
@@ -136,12 +136,8 @@
 </template>
 
 <script setup>
+import { LINK_ITEMS } from "~/constants";
 const isOpen = ref(false);
-
-const menuItems = [
-  { label: "Discover", path: "/discover" },
-  { label: "My Tours", path: "/my-tours" },
-];
 
 const { isLoggedIn } = useAuth();
 </script>

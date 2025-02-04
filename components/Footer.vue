@@ -20,7 +20,7 @@
         class="flex flex-1 justify-evenly items-center antialiased flex-wrap sm:mt-0 mt-5 w-full"
       >
         <NuxtLink
-          v-for="item in footerItems"
+          v-for="item in LINK_ITEMS"
           :key="item.path"
           :to="item.path"
           class="text-xl font-inter font-normal text-gray-800 hover:text-primary transition-colors"
@@ -92,10 +92,7 @@
 </template>
 
 <script setup>
-const currentYear = new Date().getFullYear();
+import { LINK_ITEMS } from "~/constants";
 
-const footerItems = [
-  { label: "Discover", path: "/discover" },
-  { label: "My Tours", path: "/my-tours" },
-];
+const currentYear = new Date().getFullYear();
 </script>

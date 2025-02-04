@@ -1,4 +1,6 @@
-{
+Generate a trip plan for the following data: Location - Osaka, Japan. 3 Day(s) and 2 Night(s), for a group size of Family (4 people), with a Cheap Budget. Include Flight Details, Flight Price with Booking URL, a list of hotel options with Hotel Name, Hotel Address, Price, Hotel Image URL, Geo Coordinates, Rating, Description, and Places to visit nearby with Place Name, Place Details, Place Image URL, Geo Coordinates, Ticket Price, Time to Travel to each of the location. Make sure you give this plan in JSON format.
+
+```json{
     "trip_plan": {
       "location": "London, UK",
       "duration": "1 Day and 1 Night",
@@ -81,4 +83,4 @@
   
       ]
     }
-  }
+  }```

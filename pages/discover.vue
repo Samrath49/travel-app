@@ -2,6 +2,7 @@
 import { ref, computed, onMounted } from "vue";
 import { DatePicker } from "v-calendar";
 import "v-calendar/style.css";
+import { BUDGET_OPTIONS, COMPANION_OPTIONS } from "~/constants";
 
 definePageMeta({
   middleware: "auth",
@@ -25,62 +26,21 @@ const masks = {
   input: "MMM DD, YYYY",
 };
 
+const maxDate = computed(() => {
+  if (!dateRange.value.start) return null;
+  const maxDate = new Date(dateRange.value.start);
+  maxDate.setDate(maxDate.getDate() + 6);
+  return maxDate;
+});
+
 const tripDuration = computed(() => {
   if (!dateRange.value.start || !dateRange.value.end) return 0;
   const start = new Date(dateRange.value.start);
   const end = new Date(dateRange.value.end);
   const diffTime = Math.abs(end - start);
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  return diffDays + 1;
+  return +diffDays;
 });
-
-const budgetOptions = [
-  {
-    id: "cheap",
-    title: "Cheap",
-    description: "Stay conscious of costs",
-    icon: "💵",
-  },
-  {
-    id: "moderate",
-    title: "Moderate",
-    description: "Keep cost on the average side",
-    icon: "💰",
-  },
-  {
-    id: "luxury",
-    title: "Luxury",
-    description: "Don't worry about cost",
-    icon: "💎",
-  },
-];
-
-const companionOptions = [
-  {
-    id: "solo",
-    title: "Just Me",
-    description: "A sole traveler in exploration",
-    icon: "✈️",
-  },
-  {
-    id: "couple",
-    title: "A Couple",
-    description: "Two travelers in tandem",
-    icon: "🥂",
-  },
-  {
-    id: "family",
-    title: "Family",
-    description: "A group of fun loving adventurers",
-    icon: "🏠",
-  },
-  {
-    id: "friends",
-    title: "Friends",
-    description: "A bunch of thrill-seekers",
-    icon: "⛵",
-  },
-];
 
 const generateTrip = () => {
   console.log({
@@ -216,6 +176,7 @@ const handleSelect = async (prediction) => {
           <DatePicker
             v-model="dateRange"
             :min-date="new Date()"
+            :max-date="maxDate"
             :masks="masks"
             is-range
             class="w-full"
@@ -257,7 +218,7 @@ const handleSelect = async (prediction) => {
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div
-            v-for="budget in budgetOptions"
+            v-for="budget in BUDGET_OPTIONS"
             :key="budget.id"
             @click="selectedBudget = budget.id"
             :class="[
@@ -283,7 +244,7 @@ const handleSelect = async (prediction) => {
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div
-            v-for="companion in companionOptions"
+            v-for="companion in COMPANION_OPTIONS"
             :key="companion.id"
             @click="selectedCompanion = companion.id"
             :class="[
@@ -314,3 +275,30 @@ const handleSelect = async (prediction) => {
     </div>
   </div>
 </template>
+
+<style>
+.vc-container {
+  --vc-bg-selected: theme("colors.primary");
+  --vc-border-radius: 0.5rem;
+  font-family: inherit;
+  border: 1px solid #ffefd7;
+  border-radius: 0.5rem;
+}
+
+.vc-day-content {
+  font-weight: 500;
+}
+
+.vc-highlight {
+  background-color: theme("colors.primary");
+}
+
+.vc-highlight-base-start,
+.vc-highlight-base-end {
+  background-color: theme("colors.primary");
+}
+
+.vc-day:hover .vc-day-content {
+  background-color: #ffa879;
+}
+</style>
