@@ -54,22 +54,14 @@ const generateTrip = async () => {
     .replace("{budget}", selectedBudget?.value || "moderate")
     .replace("{travelers}", selectedCompanion?.value || "none");
 
-  const geminiClient = useGemini();
-  const response = await geminiClient.sendMessage(FINAL_PROMPT);
+  // const geminiClient = useGemini();
+  // const response = await geminiClient.sendMessage(FINAL_PROMPT);
+  console.log(FINAL_PROMPT)
 };
 
-onMounted(() => {
-  // Initialize Google Maps Autocomplete service
-  const script = document.createElement("script");
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${config.public.GOOGLE_PLACES_KEY}&libraries=places`;
-  script.async = true;
-  script.defer = true;
-
-  script.onload = () => {
-    autocompleteService = new google.maps.places.AutocompleteService();
-  };
-
-  document.head.appendChild(script);
+onMounted(async () => {
+  await loadGooglePlacesScript(config.public.GOOGLE_PLACES_KEY);
+  autocompleteService = new google.maps.places.AutocompleteService();
 });
 
 const handleInput = async (event) => {
