@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from "vue";
 import { DatePicker } from "v-calendar";
 import "v-calendar/style.css";
-import { BUDGET_OPTIONS, COMPANION_OPTIONS } from "~/constants";
+import { AI_PROMPT, BUDGET_OPTIONS, COMPANION_OPTIONS } from "~/constants";
 
 definePageMeta({
   middleware: "auth",
@@ -42,20 +42,20 @@ const tripDuration = computed(() => {
   return +diffDays;
 });
 
-const generateTrip = () => {
-  console.log({
-    destination: destination?.value?.address,
-    dates: {
-      start: dateRange.value.start,
-      end: dateRange.value.end,
-    },
-    duration: {
-      days: tripDuration.value || 1,
-      nights: (tripDuration.value || 1) - 1,
-    },
-    budget: selectedBudget.value,
-    companion: selectedCompanion.value,
-  });
+const generateTrip = async () => {
+  const FINAL_PROMPT = AI_PROMPT.replace(
+    "{location}",
+    destination?.value?.address || ""
+  )
+    .replace("{totalDays}", (tripDuration.value || 1).toString())
+    .replace("{totalNights}", ((tripDuration.value || 1) - 1).toString())
+    .replace("{start}", dateRange.value.start)
+    .replace("{end}", dateRange.value.end)
+    .replace("{budget}", selectedBudget?.value || "moderate")
+    .replace("{travelers}", selectedCompanion?.value || "none");
+
+  const geminiClient = useGemini();
+  const response = await geminiClient.sendMessage(FINAL_PROMPT);
 };
 
 onMounted(() => {
@@ -249,10 +249,10 @@ const handleSelect = async (prediction) => {
           <div
             v-for="companion in COMPANION_OPTIONS"
             :key="companion.id"
-            @click="selectedCompanion = companion.id"
+            @click="selectedCompanion = `${companion.id} (${companion.size})`"
             :class="[
               'p-4 border rounded-lg cursor-pointer transition-all duration-200',
-              selectedCompanion === companion.id
+              selectedCompanion === `${companion.id} (${companion.size})`
                 ? 'border-primary bg-primary/5'
                 : 'border-gray-200 hover:border-primary/20',
             ]"

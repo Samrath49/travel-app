@@ -20,6 +20,7 @@ export default defineNuxtConfig({
       DEMO_USER_EMAIL: process.env.DEMO_USER_EMAIL,
       DEMO_USER_PASSWORD: process.env.DEMO_USER_PASSWORD,
       GOOGLE_PLACES_KEY: process.env.GOOGLE_PLACES_KEY,
+      GEMINI_API_KEY: process.env.GEMINI_API_KEY,
     },
   },
   supabase: {

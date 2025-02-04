@@ -1,108 +1,196 @@
-Generate a trip plan for the following data: Location - Osaka, Japan. 3 Day(s) and 2 Night(s), for a group size of Family (4 people), with a Cheap Budget. Include Flight Details, Flight Price with Booking URL, a list of hotel options with Hotel Name, Hotel Address, Price, Hotel Image URL, Geo Coordinates, Rating, Description, and Places to visit nearby with Place Name, Place Details, Place Image URL, Geo Coordinates, Ticket Price, Time to Travel to each of the location. Make sure you give this plan in JSON format.
-
-```json{
+// Generate a trip plan for the following data: Location - Bikaner, Rajasthan, India. 3 Day(s) and 2 Night(s), from Tue Feb 04 2025 15:02:21 GMT+0530 (India Standard Time) to Fri Feb 07 2025 15:02:21 GMT+0530 (India Standard Time), for a group size of couple (2 people), with a cheap Budget. Include Flight Details, Flight Price with Booking URL, a list of hotel options with Hotel Name, Hotel Address, Price, Hotel Image URL, Geo Coordinates, Rating, Description, and Places to visit nearby with Place Name, Place Details, Place Image URL, Geo Coordinates, Ticket Price, Time to Travel to each of the location. Make sure you give this plan in JSON format.
+[
+  {
     "trip_plan": {
-      "location": "London, UK",
-      "duration": "1 Day and 1 Night",
-      "group_size": "Single (1 person)",
+      "location": "Bikaner, Rajasthan, India",
+      "duration": "3 Days and 2 Nights",
+      "dates": {
+        "start": "2025-02-04",
+        "end": "2025-02-07"
+      },
+      "group_size": "Couple (2 people)",
       "budget": "Moderate",
       "flight_details": {
-        "airline": "British Airways",
-        "flight_number": "BA001",
-        "departure_city": "New York",
-        "arrival_city": "London",
-        "departure_date": "2024-03-01",
-        "arrival_date": "2024-03-02",
-        "departure_time": "18:00",
-        "arrival_time": "06:30",
-        "price": "£500",
-        "booking_url": "https://www.britishairways.com/"
+        "airline": "This section needs specific flight details. Please provide this information for accurate results.",
+        "flight_number": null,
+        "departure_airport": null,
+        "arrival_airport": null,
+        "departure_date": "2025-02-04",
+        "arrival_date": "2025-02-04",
+        "departure_time": null,
+        "arrival_time": null,
+        "price": null,
+        "booking_url": null
       },
-      "hotel": {
-        "options": [
-          {
-            "name": "The Z Hotel Piccadilly",
-            "address": "50 Piccadilly, London, W1J 0DX",
-            "price": "£80 per night",
-            "image_url": "https://www.thezhotels.com/wp-content/uploads/Piccadilly/Piccadilly_Exterior_1.jpg",
-            "geo_coordinates": {
-              "latitude": 51.5085,
-              "longitude": -0.1389
-            },
-            "rating": 4.0,
-            "description": "Compact and stylish hotel in a central location, close to many attractions."
+      "hotels": [
+        {
+          "name": "Hotel Bikaner Haveli",
+          "address": "Opposite Sadar Police Station, Station Road, Bikaner, Rajasthan 334001",
+          "price": "₹3000-₹5000 per night",
+          "image_url": "https://example.com/hotel_bikaner_haveli.jpg",
+          "geo_coordinates": {
+            "latitude": 28.0180,
+            "longitude": 73.3177
           },
-          {
-            "name": "Point A Hotel London Kings Cross – St Pancras",
-            "address": "32-34 Euston Road, Kings Cross, London NW1 2SD",
-            "price": "£90 per night",
-            "image_url": "https://www.pointahotels.com/media/galleries/160/kings-cross-exterior.jpg",
-            "geo_coordinates": {
-              "latitude": 51.5309,
-              "longitude": -0.1258
-            },
-            "rating": 4.2,
-            "description": "Modern and affordable hotel near Kings Cross St Pancras station, ideal for transport links."
-          }
-        ]
-      },
+          "rating": 4.0,
+          "description": "A heritage hotel offering traditional Rajasthani hospitality and architecture."
+        },
+        {
+          "name": "The Lallgarh Palace",
+          "address": "Lalgarh Palace, Bikaner, Rajasthan 334001",
+          "price": "₹6000-₹10000 per night",
+          "image_url": "https://example.com/lallgarh_palace.jpg",
+          "geo_coordinates": {
+            "latitude": 28.0205,
+            "longitude": 73.3172
+          },
+          "rating": 4.5,
+          "description": "A luxurious heritage hotel, formerly a palace, offering opulent rooms and stunning views."
+        }
+      ],
       "places_to_visit": [
         {
-          "name": "British Museum",
-          "details": "World-renowned museum housing a vast collection of artifacts from around the globe.",
-          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/British_Museum_Great_Court.jpg/1280px-British_Museum_Great_Court.jpg",
+          "name": "Junagarh Fort",
+          "details": "A majestic fort known for its intricate architecture and historical significance.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Junagarh_Fort_Bikaner.jpg/1280px-Junagarh_Fort_Bikaner.jpg",
           "geo_coordinates": {
-            "latitude": 51.5195,
-            "longitude": -0.1269
+            "latitude": 28.0211,
+            "longitude": 73.3144
           },
-          "ticket_price": "Free",
-          "time_to_travel": "20 minutes from The Z Hotel Piccadilly by tube"
+          "ticket_price": "₹50",
+          "time_to_travel": "15 minutes from Hotel Bikaner Haveli (approx.)"
         },
         {
-          "name": "Buckingham Palace",
-          "details": "Official residence of the British monarch, with the option to witness the Changing of the Guard ceremony.",
-          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Buckingham_Palace_from_the_Victoria_Memorial.jpg/1920px-Buckingham_Palace_from_the_Victoria_Memorial.jpg",
+          "name": "Camel Breeding Farm",
+          "details": "A center for breeding camels, offering a chance to see various breeds and learn about camel culture.",
+          "image_url": "https://example.com/camel_breeding_farm.jpg",
           "geo_coordinates": {
-            "latitude": 51.5014,
-            "longitude": -0.1419
+            "latitude": 28.0436,
+            "longitude": 73.3169
           },
-          "ticket_price": "£30 (State Rooms)",
-          "time_to_travel": "15 minutes from The Z Hotel Piccadilly by walk/tube"
+          "ticket_price": "₹20",
+          "time_to_travel": "30 minutes from Junagarh Fort (approx.)"
         },
-              {
-          "name": "Tower of London",
-          "details": "Historic castle with a rich history, housing the Crown Jewels.",
-          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Tower_of_London_north_side.JPG/800px-Tower_of_London_north_side.JPG",
+        {
+          "name": "National Research Centre on Camel",
+          "details": "A research center dedicated to camels, with exhibits and information about camel research.",
+          "image_url": "https://example.com/camel_research_centre.jpg",
           "geo_coordinates": {
-            "latitude": 51.5081,
-            "longitude": -0.0759
+            "latitude": 28.0436,
+            "longitude": 73.3169
           },
-          "ticket_price": "£30",
-          "time_to_travel": "30 minutes from The Z Hotel Piccadilly by tube"
+          "ticket_price": "Free",
+          "time_to_travel": "5 minutes from Camel Breeding Farm (approx.)"
+        },
+        {
+          "name": "Lalgarh Palace",
+          "details": "A stunning palace offering guided tours of its beautiful architecture and interior.",
+          "image_url": "https://example.com/lalgarh_palace_interior.jpg",
+          "geo_coordinates": {
+            "latitude": 28.0205,
+            "longitude": 73.3172
+          },
+          "ticket_price": "₹100",
+          "time_to_travel": "20 minutes from National Research Centre on Camel (approx.)"
         }
-  
       ]
     }
-  }```
-
+  },
 
   {
-    "destination": {
-        "name": "Lucknow",
-        "address": "Lucknow, Uttar Pradesh, India",
-        "location": {
-            "lat": 26.8466937,
-            "lng": 80.94616599999999
+    "tripPlan": {
+      "location": "Rome, Italy",
+      "duration": "3 Days and 2 Nights",
+      "dates": {
+        "start": "2025-02-04T15:32:25+05:30",
+        "end": "2025-02-07T15:32:25+05:30"
+      },
+      "groupSize": "Couple (2 people)",
+      "budget": "Moderate",
+      "flightDetails": {
+        "airline": "Lufthansa",
+        "flightNumber": "LH723",
+        "departureCity": "Delhi",
+        "arrivalCity": "Rome",
+        "departureDate": "2025-02-04",
+        "arrivalDate": "2025-02-05",
+        "departureTime": "10:00 AM",
+        "arrivalTime": "02:00 PM",
+        "price": "₹60000",
+        "bookingUrl": "https://www.lufthansa.com/"
+      },
+      "hotelOptions": [
+        {
+          "hotelName": "Hotel Artemide",
+          "address": "Via di Trevi, 146, 00187 Roma RM, Italy",
+          "price": "₹8000 per night",
+          "imageUrl": "https://www.hotelartemiderome.com/images/hotel-artemide-rome-exterior.jpg",
+          "geoCoordinates": {
+            "latitude": 41.9016,
+            "longitude": 12.4862
+          },
+          "rating": 4.5,
+          "description": "A charming hotel near Trevi Fountain, offering comfortable rooms and a central location."
+        },
+        {
+          "hotelName": "The Inn at the Spanish Steps",
+          "address": "Piazza di Spagna, 8, 00187 Roma RM, Italy",
+          "price": "₹10000 per night",
+          "imageUrl": "https://www.theinnatthespanishsteps.com/images/hotel-exterior.jpg",
+          "geoCoordinates": {
+            "latitude": 41.9016,
+            "longitude": 12.4862
+          },
+          "rating": 4.2,
+          "description": "A stylish hotel located near the Spanish Steps, known for its chic ambiance and excellent service."
         }
-    },
-    "dates": {
-        "start": "2025-02-04T05:42:57.543Z",
-        "end": "2025-02-07T05:42:57.543Z"
-    },
-    "duration": {
-        "days": 3,
-        "nights": 2
-    },
-    "budget": "cheap",
-    "companion": "couple"
-}
+      ],
+      "placesToVisit": [
+        {
+          "placeName": "Colosseum",
+          "placeDetails": "An iconic amphitheater, a symbol of ancient Rome.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Colosseum_in_Rome-20071203.jpg/800px-Colosseum_in_Rome-20071203.jpg",
+          "geoCoordinates": {
+            "latitude": 41.8902,
+            "longitude": 12.4922
+          },
+          "ticketPrice": "₹20",
+          "travelTime": "30 minutes by metro from Hotel Artemide"
+        },
+        {
+          "placeName": "Roman Forum",
+          "placeDetails": "The heart of ancient Rome, with ruins of temples, basilicas, and public buildings.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rome_Roman_Forum_2019-07-13_1.jpg/1920px-Rome_Roman_Forum_2019-07-13_1.jpg",
+          "geoCoordinates": {
+            "latitude": 41.8902,
+            "longitude": 12.4922
+          },
+          "ticketPrice": "₹15",
+          "travelTime": "10 minutes walk from Colosseum"
+        },
+        {
+          "placeName": "Pantheon",
+          "placeDetails": "A well-preserved ancient temple, now a church, known for its impressive dome and oculus.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Pantheon_in_Rome.jpg/1280px-Pantheon_in_Rome.jpg",
+          "geoCoordinates": {
+            "latitude": 41.8989,
+            "longitude": 12.4767
+          },
+          "ticketPrice": "Free",
+          "travelTime": "20 minutes by metro from Roman Forum"
+        },
+        {
+          "placeName": "Trevi Fountain",
+          "placeDetails": "A spectacular Baroque fountain, famous for its beauty and the tradition of tossing coins.",
+          "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Fontana_di_Trevi_2016.jpg/1920px-Fontana_di_Trevi_2016.jpg",
+          "geoCoordinates": {
+            "latitude": 41.9016,
+            "longitude": 12.4862
+          },
+          "ticketPrice": "Free",
+          "travelTime": "5 minutes walk from Hotel Artemide"
+        }
+      ]
+    }
+  }
+]

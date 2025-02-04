@@ -11,10 +11,6 @@ const {
   memberSince,
   logout,
 } = useAuth();
-
-const formatDate = (timestamp) => {
-  return timestamp ? new Date(timestamp).toLocaleDateString() : "N/A";
-};
 </script>
 <template>
   <div className="max-w-2xl mx-auto p-8">

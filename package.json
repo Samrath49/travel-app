@@ -11,6 +11,7 @@
     "tree": "find . -maxdepth 4 \\( -type d -o -type f \\) ! -path \"./.*\" ! -path \"./node_modules*\" ! -path \"./public*\" ! -path \"./assets*\" | sed -e \"s/[^-][^\\/]*\\// |/g\" -e \"s/|\\([^ ]\\)/|-\\1/\" > PROJECT_TREE.md"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "@nuxt/icon": "^1.10.3",
     "@nuxt/image": "^1.9.0",
     "@popperjs/core": "^2.11.8",
