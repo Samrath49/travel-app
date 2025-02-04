@@ -84,3 +84,25 @@ Generate a trip plan for the following data: Location - Osaka, Japan. 3 Day(s) a
       ]
     }
   }```
+
+
+  {
+    "destination": {
+        "name": "Lucknow",
+        "address": "Lucknow, Uttar Pradesh, India",
+        "location": {
+            "lat": 26.8466937,
+            "lng": 80.94616599999999
+        }
+    },
+    "dates": {
+        "start": "2025-02-04T05:42:57.543Z",
+        "end": "2025-02-07T05:42:57.543Z"
+    },
+    "duration": {
+        "days": 3,
+        "nights": 2
+    },
+    "budget": "cheap",
+    "companion": "couple"
+}

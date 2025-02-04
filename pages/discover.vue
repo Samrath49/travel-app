@@ -29,7 +29,7 @@ const masks = {
 const maxDate = computed(() => {
   if (!dateRange.value.start) return null;
   const maxDate = new Date(dateRange.value.start);
-  maxDate.setDate(maxDate.getDate() + 6);
+  maxDate.setDate(maxDate.getDate() + 7);
   return maxDate;
 });
 
@@ -44,12 +44,15 @@ const tripDuration = computed(() => {
 
 const generateTrip = () => {
   console.log({
-    destination: destination.value,
+    destination: destination?.value?.address,
     dates: {
       start: dateRange.value.start,
       end: dateRange.value.end,
     },
-    duration: tripDuration.value,
+    duration: {
+      days: tripDuration.value || 1,
+      nights: (tripDuration.value || 1) - 1,
+    },
     budget: selectedBudget.value,
     companion: selectedCompanion.value,
   });
@@ -146,7 +149,7 @@ const handleSelect = async (prediction) => {
             ref="autocompleteInput"
             type="text"
             placeholder="Enter destination..."
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/25 focus:border-primary/25"
             @input="handleInput"
           />
           <div
@@ -187,7 +190,7 @@ const handleSelect = async (prediction) => {
                   <input
                     :value="inputValue.start"
                     v-on="inputEvents.start"
-                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/25 focus:border-transparent"
                     placeholder="Start date"
                     readonly
                   />
@@ -197,7 +200,7 @@ const handleSelect = async (prediction) => {
                   <input
                     :value="inputValue.end"
                     v-on="inputEvents.end"
-                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/25 focus:border-transparent"
                     placeholder="End date"
                     readonly
                   />
@@ -258,6 +261,7 @@ const handleSelect = async (prediction) => {
               <span class="text-2xl mr-2">{{ companion.icon }}</span>
               <h3 class="font-medium">{{ companion.title }}</h3>
             </div>
+            <span class="text-xs text-primary/80">{{ companion.size }}</span>
             <p class="text-sm text-gray-600">{{ companion.description }}</p>
           </div>
         </div>
@@ -267,7 +271,7 @@ const handleSelect = async (prediction) => {
       <div class="text-center">
         <button
           @click="generateTrip"
-          class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200"
+          class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/80 transition-colors duration-200"
         >
           Generate Trip
         </button>

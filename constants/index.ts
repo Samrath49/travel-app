@@ -2,25 +2,29 @@ export const COMPANION_OPTIONS = [
   {
     id: "solo",
     title: "Just Me",
-    description: "A sole traveler in exploration",
+    description: "Perfect for a journey of self-discovery",
+    size: "1 person",
     icon: "✈️",
   },
   {
     id: "couple",
     title: "A Couple",
-    description: "Two travelers in tandem",
+    description: "Ideal for romantic getaways",
+    size: "2 people",
     icon: "🥂",
   },
   {
     id: "family",
     title: "Family",
-    description: "A group of fun loving adventurers",
+    description: "Create memories with your loved ones",
+    size: "3-5 people",
     icon: "🏠",
   },
   {
     id: "friends",
     title: "Friends",
-    description: "A bunch of thrill-seekers",
+    description: "Adventures with your squad",
+    size: "4+ people",
     icon: "⛵",
   },
 ] as const;
