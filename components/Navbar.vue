@@ -29,8 +29,8 @@
             to="/profile"
             class="flex items-center text-gray-800 hover:text-primary transition-colors"
           >
-            <Icon name="ph:user-circle" class="size-6 mr-2" />
-            <span>Profile</span>
+            <Icon name="ph:user-circle" class="size-7 mr-2 bg-primary" />
+            <span class="font-poppins text-lg font-medium">Profile</span>
           </NuxtLink>
 
           <NuxtLink
