@@ -1,0 +1,84 @@
+{
+    "trip_plan": {
+      "location": "London, UK",
+      "duration": "1 Day and 1 Night",
+      "group_size": "Single (1 person)",
+      "budget": "Moderate",
+      "flight_details": {
+        "airline": "British Airways",
+        "flight_number": "BA001",
+        "departure_city": "New York",
+        "arrival_city": "London",
+        "departure_date": "2024-03-01",
+        "arrival_date": "2024-03-02",
+        "departure_time": "18:00",
+        "arrival_time": "06:30",
+        "price": "£500",
+        "booking_url": "https://www.britishairways.com/"
+      },
+      "hotel": {
+        "options": [
+          {
+            "name": "The Z Hotel Piccadilly",
+            "address": "50 Piccadilly, London, W1J 0DX",
+            "price": "£80 per night",
+            "image_url": "https://www.thezhotels.com/wp-content/uploads/Piccadilly/Piccadilly_Exterior_1.jpg",
+            "geo_coordinates": {
+              "latitude": 51.5085,
+              "longitude": -0.1389
+            },
+            "rating": 4.0,
+            "description": "Compact and stylish hotel in a central location, close to many attractions."
+          },
+          {
+            "name": "Point A Hotel London Kings Cross – St Pancras",
+            "address": "32-34 Euston Road, Kings Cross, London NW1 2SD",
+            "price": "£90 per night",
+            "image_url": "https://www.pointahotels.com/media/galleries/160/kings-cross-exterior.jpg",
+            "geo_coordinates": {
+              "latitude": 51.5309,
+              "longitude": -0.1258
+            },
+            "rating": 4.2,
+            "description": "Modern and affordable hotel near Kings Cross St Pancras station, ideal for transport links."
+          }
+        ]
+      },
+      "places_to_visit": [
+        {
+          "name": "British Museum",
+          "details": "World-renowned museum housing a vast collection of artifacts from around the globe.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/British_Museum_Great_Court.jpg/1280px-British_Museum_Great_Court.jpg",
+          "geo_coordinates": {
+            "latitude": 51.5195,
+            "longitude": -0.1269
+          },
+          "ticket_price": "Free",
+          "time_to_travel": "20 minutes from The Z Hotel Piccadilly by tube"
+        },
+        {
+          "name": "Buckingham Palace",
+          "details": "Official residence of the British monarch, with the option to witness the Changing of the Guard ceremony.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Buckingham_Palace_from_the_Victoria_Memorial.jpg/1920px-Buckingham_Palace_from_the_Victoria_Memorial.jpg",
+          "geo_coordinates": {
+            "latitude": 51.5014,
+            "longitude": -0.1419
+          },
+          "ticket_price": "£30 (State Rooms)",
+          "time_to_travel": "15 minutes from The Z Hotel Piccadilly by walk/tube"
+        },
+              {
+          "name": "Tower of London",
+          "details": "Historic castle with a rich history, housing the Crown Jewels.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Tower_of_London_north_side.JPG/800px-Tower_of_London_north_side.JPG",
+          "geo_coordinates": {
+            "latitude": 51.5081,
+            "longitude": -0.0759
+          },
+          "ticket_price": "£30",
+          "time_to_travel": "30 minutes from The Z Hotel Piccadilly by tube"
+        }
+  
+      ]
+    }
+  }

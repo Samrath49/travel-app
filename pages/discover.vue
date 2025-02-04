@@ -1,5 +1,8 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { DatePicker } from "v-calendar";
+import "v-calendar/style.css";
+
 definePageMeta({
   middleware: "auth",
 });
@@ -11,9 +14,25 @@ const predictions = ref([]);
 let autocompleteService = null;
 const emit = defineEmits(["place-selected"]);
 const destination = ref("");
-const duration = ref("");
 const selectedBudget = ref("");
 const selectedCompanion = ref("");
+const dateRange = ref({
+  start: new Date(),
+  end: new Date(),
+});
+
+const masks = {
+  input: "MMM DD, YYYY",
+};
+
+const tripDuration = computed(() => {
+  if (!dateRange.value.start || !dateRange.value.end) return 0;
+  const start = new Date(dateRange.value.start);
+  const end = new Date(dateRange.value.end);
+  const diffTime = Math.abs(end - start);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays + 1;
+});
 
 const budgetOptions = [
   {
@@ -64,10 +83,13 @@ const companionOptions = [
 ];
 
 const generateTrip = () => {
-  // TODO: Implement trip generation logic
   console.log({
     destination: destination.value,
-    duration: duration.value,
+    dates: {
+      start: dateRange.value.start,
+      end: dateRange.value.end,
+    },
+    duration: tripDuration.value,
     budget: selectedBudget.value,
     companion: selectedCompanion.value,
   });
@@ -120,7 +142,6 @@ const handleSelect = async (prediction) => {
     },
     (place, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        // Save the selected place data to the destination ref
         destination.value = {
           name: place.name,
           address: place.formatted_address,
@@ -130,7 +151,6 @@ const handleSelect = async (prediction) => {
           },
         };
 
-        // Update the input field with the formatted address
         autocompleteInput.value.value = place.formatted_address;
         predictions.value = [];
       }
@@ -187,22 +207,47 @@ const handleSelect = async (prediction) => {
         </div>
       </div>
 
-      <!-- Duration Input -->
+      <!-- Date Range Input -->
       <div class="mb-8">
-        <label
-          for="duration"
-          class="block text-lg font-medium text-gray-900 mb-3"
-        >
-          How many days are you planning your trip?
+        <label class="block text-lg font-medium text-gray-900 mb-3">
+          When are you planning your trip?
         </label>
-        <input
-          type="number"
-          id="duration"
-          v-model="duration"
-          min="1"
-          class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="Ex: 3"
-        />
+        <div class="relative">
+          <DatePicker
+            v-model="dateRange"
+            :min-date="new Date()"
+            :masks="masks"
+            is-range
+            class="w-full"
+          >
+            <template #default="{ inputValue, inputEvents }">
+              <div class="flex items-center gap-2">
+                <div class="relative flex-1">
+                  <input
+                    :value="inputValue.start"
+                    v-on="inputEvents.start"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Start date"
+                    readonly
+                  />
+                </div>
+                <span class="text-gray-500">to</span>
+                <div class="relative flex-1">
+                  <input
+                    :value="inputValue.end"
+                    v-on="inputEvents.end"
+                    class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="End date"
+                    readonly
+                  />
+                </div>
+              </div>
+            </template>
+          </DatePicker>
+        </div>
+        <p class="mt-2 text-sm text-gray-600" v-if="tripDuration">
+          Trip duration: {{ tripDuration }} days
+        </p>
       </div>
 
       <!-- Budget Selection -->
