@@ -17,7 +17,7 @@
             safe vacation at a price you can afford.
           </p>
         </div>
-        <!-- Section Icon -->
+        <!-- Section Bg Image -->
         <div>
           <NuxtImg
             src="/icons/Things-icon.png"
@@ -31,11 +31,14 @@
       <ul
         class="w-full flex flex-col relative z-0 md:flex-row justify-center items-center gap-6 mt-12"
       >
+        <div class="hidden card-signup card-worth card-exciting"></div>
         <li
           v-for="(step, index) in THINGS_TO_DO_STEPS"
           :key="index"
-          class="card floating-card min-w-25 max-w-[23rem] md:h-64 rounded-[3%] p-6 text-left"
-          :class="step.bgClass"
+          :class="[
+            'card floating-card min-w-25 max-w-[23rem] md:h-64 rounded-[3%] p-6 text-left',
+            step.bgClass,
+          ]"
         >
           <NuxtImg
             :src="step.icon"

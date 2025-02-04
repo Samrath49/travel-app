@@ -103,6 +103,10 @@
     @apply absolute top-0 left-0 w-full opacity-100;
   }
 
+  .img-fluid {
+    @apply top-0 left-0 w-10/12 z-0 opacity-100;
+  }
+
   .card-exclusive {
     @apply border border-[#c0b7b79c] bg-white !important;
   }
@@ -112,6 +116,12 @@
     @apply absolute bg-no-repeat bg-cover; 
   }
 
+  .image-left {
+    @apply absolute top-20 right-[2%] md:right-[10%] md:top-2 -z-0;  
+  }
+}
+
+@layer utilities {
   .card-signup,
   .card-exciting {
     @apply bg-card-signup;
@@ -121,7 +131,4 @@
     @apply bg-card-worth;
   }
 
-  .image-left {
-    @apply absolute top-20 right-[2%] md:right-[10%] md:top-2 -z-0;  
-  }
 }
