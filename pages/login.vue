@@ -81,7 +81,7 @@ async function signInWithGoogle() {
   try {
     loading.value = true;
     error.value = null;
-
+    toast.info("Signing in with Google...");
     const { error: authError } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: `${window.location.origin}/auth/callback` },

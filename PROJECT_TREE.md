@@ -3,10 +3,15 @@
  |-components
  | |-Footer.vue
  | |-Hero.vue
+ | |-Modal.vue
  | |-Navbar.vue
  | |-ThingsToDo.vue
  |-composables
  | |-useAuth.ts
+ | |-useGemini.ts
+ | |-useItinerary.ts
+ |-constants
+ | |-index.ts
  |-error.vue
  |-layouts
  | |-custom.vue
@@ -20,14 +25,20 @@
  | |-discover.vue
  | |-index.vue
  | |-login.vue
- | |-my-trips.vue
+ | |-my-tours
+ | | |-index.vue
+ | | |-[id].vue
  | |-profile.vue
+ |-plugins
+ | |-toast.ts
  |-PROJECT_TREE.md
+ |-prompt.json
  |-README.md
  |-server
  | |-tsconfig.json
  |-tailwind.config.ts
- |-thought.txt
  |-tsconfig.json
  |-utils
+ | |-gemini.ts
+ | |-googlePlaces.ts
  | |-index.ts
