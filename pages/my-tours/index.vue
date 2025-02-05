@@ -197,9 +197,10 @@ const getFirstPlaceImage = (itinerary: any) => {
   return firstPlace?.image_url;
 };
 
-const confirmDelete = (id: string) => {
+const confirmDelete = async (id: string) => {
   itineraryToDelete.value = id;
   showDeleteModal.value = true;
+  await nextTick();
 };
 
 const getDurationInDays = (start: string, end: string) => {
