@@ -144,7 +144,7 @@ const handleSelect = async (prediction) => {
     <div class="floating-card max-w-7xl p-10 mx-auto">
       <!-- Header Section -->
       <div class="text-start mb-12">
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">
           Tell us your travel preferences 💰 🌴
         </h1>
         <p class="text-gray-600">
