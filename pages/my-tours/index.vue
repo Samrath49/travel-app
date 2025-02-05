@@ -57,6 +57,7 @@
               <NuxtImg
                 :src="getFirstPlaceImage(itinerary)"
                 :alt="itinerary.trip_plan.location"
+                loading="lazy"
                 class="w-full h-full object-cover group-hover:scale-125 transition-all duration-500 cursor-pointer"
                 :placeholder="`/img/placeholder${index + 1}.png`"
               />

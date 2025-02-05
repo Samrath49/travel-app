@@ -18,7 +18,9 @@ const {
     <div class="floating-card items-center max-w-7xl p-4 sm:p-10 mx-auto">
       <h1 className="text-2xl sm:text-3xl font-bold mb-8">Profile</h1>
 
-      <div className="flex flex-col sm:flex-row items-center gap-4 mb-8 sm:mb-12">
+      <div
+        className="flex flex-col sm:flex-row items-center gap-4 mb-8 sm:mb-12"
+      >
         <div
           className="bg-primary/35 p-3 flex justify-center items-center rounded-full"
         >

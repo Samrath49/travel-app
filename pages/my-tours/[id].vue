@@ -40,7 +40,9 @@
 
       <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
         <!-- Hero Section -->
-        <div class="relative h-52 sm:h-64 bg-gradient-to-r from-blue-500 to-purple-600">
+        <div
+          class="relative h-52 sm:h-64 bg-gradient-to-r from-blue-500 to-purple-600"
+        >
           <div class="absolute inset-0 bg-black/30"></div>
           <div class="absolute bottom-0 p-3 sm:p-8 text-white">
             <h1 class="text-2xl sm:text-4xl font-bold mb-2">
@@ -178,6 +180,7 @@
                 <NuxtImg
                   :src="hotel.image_url"
                   :alt="hotel.name"
+                  loading="lazy"
                   class="w-full h-48 object-cover rounded-t-xl"
                   :placeholder="`/img/placeholder${index + 1}.png`"
                 />
@@ -243,6 +246,7 @@
                 <NuxtImg
                   :src="place.image_url"
                   :alt="place.name"
+                  loading="lazy"
                   class="w-full h-48 object-cover rounded-t-xl"
                   :placeholder="`/img/placeholder${index + 1}.png`"
                 />
