@@ -43,6 +43,9 @@ const tripDuration = computed(() => {
 });
 
 const generateTrip = async () => {
+  const isLoading = ref(false);
+  const error = ref(null);
+
   const FINAL_PROMPT = AI_PROMPT.replace(
     "{location}",
     destination?.value?.address || ""
@@ -53,10 +56,32 @@ const generateTrip = async () => {
     .replace("{end}", dateRange.value.end)
     .replace("{budget}", selectedBudget?.value || "moderate")
     .replace("{travelers}", selectedCompanion?.value || "none");
+  // console.log(FINAL_PROMPT);
+  try {
+    isLoading.value = true;
+    error.value = null;
 
-  // const geminiClient = useGemini();
-  // const response = await geminiClient.sendMessage(FINAL_PROMPT);
-  console.log(FINAL_PROMPT)
+    const geminiClient = useGemini();
+    const response = await geminiClient.sendMessage(FINAL_PROMPT);
+
+    const tripPlan =
+      typeof response === "string" ? JSON.parse(response) : response;
+
+    // console.log("@res", response);
+    const { createItinerary } = useItinerary();
+    const savedItinerary = await createItinerary(tripPlan?.trip_plan);
+    // console.log("@savedItinerary", savedItinerary);
+    const router = useRouter();
+    router.push(`/my-tours/${savedItinerary.id}`);
+  } catch (err) {
+    error.value =
+      err instanceof Error
+        ? err.message
+        : "An error occurred while generating the trip";
+    console.error("Error generating trip:", err);
+  } finally {
+    isLoading.value = false;
+  }
 };
 
 onMounted(async () => {
@@ -116,9 +141,9 @@ const handleSelect = async (prediction) => {
 
 <template>
   <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl mx-auto">
+    <div class="floating-card max-w-7xl p-10 mx-auto">
       <!-- Header Section -->
-      <div class="text-center mb-12">
+      <div class="text-start mb-12">
         <h1 class="text-3xl font-bold text-gray-900 mb-4">
           Tell us your travel preferences 💰 🌴
         </h1>
