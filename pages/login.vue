@@ -46,14 +46,24 @@ async function handleSubmit() {
         email: email.value,
         password: password.value,
       });
-      if (authError) throw authError;
+      if (authError) {
+        toast.error("Failed to log in. Please try again.");
+        throw authError;
+      } else {
+        toast.success("Logged in successfully.");
+      }
     } else {
       const { error: authError } = await supabase.auth.signUp({
         email: email.value,
         password: password.value,
         options: { data: { full_name: fullName.value } },
       });
-      if (authError) throw authError;
+      if (authError) {
+        toast.error("Failed to sign up. " + authError);
+        throw authError;
+      } else {
+        toast.success("Signed up successfully, verify your email to login.");
+      }
     }
 
     email.value = "";
@@ -102,7 +112,7 @@ function signInWithDemo() {
 
 watch(user, (newUser) => {
   if (newUser) {
-    router.push("/profile");
+    router.push("/discover");
   }
 });
 </script>

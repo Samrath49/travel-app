@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-slate-100 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl p-10 mx-auto">
-      <h1 class="text-4xl font-bold mb-8 text-gray-900">
+  <div class="min-h-screen bg-slate-100 py-4 sm:py-12 px-2 sm:px-6 lg:px-8">
+    <div class="max-w-7xl p-1 sm:p-10 mx-auto">
+      <h1 class="text-2xl sm:text-4xl font-bold mb-4 sm:mb-8 text-gray-900">
         My Travel Itineraries
       </h1>
 
