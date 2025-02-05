@@ -72,7 +72,7 @@
             <h2 class="text-2xl font-bold mb-6 flex items-center">
               ✈️ Flight Details
             </h2>
-            <div class="bg-gray-50 rounded-xl p-6">
+            <div class="bg-slate-100 rounded-xl p-6">
               <div class="grid md:grid-cols-2 gap-8">
                 <div class="space-y-4">
                   <div class="flex items-center justify-between">

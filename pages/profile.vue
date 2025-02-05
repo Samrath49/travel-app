@@ -13,7 +13,7 @@ const {
 } = useAuth();
 </script>
 <template>
-  <div className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div className="bg-slate-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="floating-card items-center max-w-7xl p-10 mx-auto">
       <h1 className="text-3xl font-bold mb-8">Profile</h1>
 

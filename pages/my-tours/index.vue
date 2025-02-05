@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen bg-slate-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl p-10 mx-auto">
       <h1 class="text-4xl font-bold mb-8 text-gray-900">
         My Travel Itineraries
@@ -26,7 +26,7 @@
         </p>
         <NuxtLink
           to="/discover"
-          class="inline-block bg-primary/80 text-white px-6 py-3 rounded-lg hover:bg-primary transition duration-300"
+          class="inline-block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary/80 transition duration-300"
         >
           Plan a Trip
         </NuxtLink>
@@ -164,25 +164,6 @@
           </button>
         </template>
       </Modal>
-
-      <div
-        v-if="showToast"
-        class="fixed bottom-4 right-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded shadow-lg"
-        role="alert"
-      >
-        <div class="flex">
-          <div class="py-1">
-            <Icon
-              name="heroicons:exclamation-circle"
-              class="h-6 w-6 text-red-500 mr-4"
-            />
-          </div>
-          <div>
-            <p class="font-bold">Error</p>
-            <p>{{ toastMessage }}</p>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -190,6 +171,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useItinerary } from "~/composables/useItinerary";
+import { useToast } from "vue-toastification";
 
 const { getItineraries, deleteItinerary } = useItinerary();
 
@@ -205,13 +187,8 @@ const {
 const showDeleteModal = ref(false);
 const itineraryToDelete = ref<string | null>(null);
 const isDeleting = ref(false);
-const showToast = ref(false);
-const toastMessage = ref("");
 
-// const toast = useToast();
-
-// toast.success("Itinerary deleted successfully");
-// toast.error("Failed to delete itinerary");
+const toast = useToast();
 
 const formatDateRange = (start: string, end: string) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -239,14 +216,6 @@ const cancelDelete = () => {
   itineraryToDelete.value = null;
 };
 
-const showError = (message: string) => {
-  toastMessage.value = message;
-  showToast.value = true;
-  setTimeout(() => {
-    showToast.value = false;
-  }, 5000);
-};
-
 const getDurationInDays = (start: string, end: string) => {
   const diffTime = Math.abs(
     new Date(end).getTime() - new Date(start).getTime()
@@ -269,8 +238,9 @@ const handleDelete = async () => {
     itineraryToDelete.value = null;
   } catch (e) {
     console.error("Error deleting itinerary:", e);
-    showError("Failed to delete itinerary. Please try again.");
+    toast.error("Failed to delete itinerary. Please try again.");
   } finally {
+    toast.success("Itinerary deleted successfully.");
     isDeleting.value = false;
   }
 };
@@ -279,7 +249,7 @@ const handleDelete = async () => {
 watch(error, (newError) => {
   if (newError) {
     console.error("Error fetching itineraries:", newError);
-    showError("Failed to load itineraries. Please refresh the page.");
+    toast.error("Failed to load itineraries:" + newError);
   }
 });
 </script>
@@ -295,7 +265,6 @@ watch(error, (newError) => {
   transform: translateY(30px);
 }
 
-/* Smooth transition for delete button */
 .group:hover .opacity-0 {
   transition: opacity 0.2s ease-in-out;
 }

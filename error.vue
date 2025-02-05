@@ -6,7 +6,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col items-center justify-center h-screen bg-gray-50">
+  <div class="flex flex-col items-center justify-center h-screen bg-slate-100">
     <div class="text-center card floating-card p-10">
       <h1 class="mb-4 text-6xl font-semibold text-red-500">
         {{ error?.statusCode }}

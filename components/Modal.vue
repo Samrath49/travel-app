@@ -30,7 +30,7 @@
             <!-- Footer -->
             <div
               v-if="$slots.footer"
-              class="px-6 py-4 border-t flex justify-end bg-gray-50 rounded-b-lg"
+              class="px-6 py-4 border-t flex justify-end bg-slate-100 rounded-b-lg"
             >
               <slot name="footer" />
             </div>

@@ -2,12 +2,16 @@
 import { ref, computed } from "vue";
 import { useRuntimeConfig } from "#app";
 import { NuxtLink } from "#components";
+import { useToast } from "vue-toastification";
+
 const router = useRouter();
 const user = useSupabaseUser();
+const toast = useToast();
 
 definePageMeta({
   layout: "custom",
   middleware: "auth",
+  title: "Login",
 });
 
 const props = defineProps({
@@ -105,7 +109,7 @@ watch(user, (newUser) => {
 
 <template>
   <div
-    class="min-h-screen flex items-center justify-center bg-gray-50 py-6 md:py-10 px-4 lg:px-8"
+    class="min-h-screen flex items-center justify-center bg-slate-100 py-6 md:py-10 px-4 lg:px-8"
   >
     <div
       class="max-w-md w-full card floating-card shadow-xl py-10 sm:py-10 px-2 sm:px-5 space-y-6"

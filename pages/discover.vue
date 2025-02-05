@@ -3,12 +3,14 @@ import { ref, computed, onMounted } from "vue";
 import { DatePicker } from "v-calendar";
 import "v-calendar/style.css";
 import { AI_PROMPT, BUDGET_OPTIONS, COMPANION_OPTIONS } from "~/constants";
+import { useToast } from "vue-toastification";
 
 definePageMeta({
   middleware: "auth",
 });
 
 const config = useRuntimeConfig();
+const toast = useToast();
 
 const autocompleteInput = ref(null);
 const predictions = ref([]);
@@ -59,6 +61,7 @@ const generateTrip = async () => {
     .replace("{travelers}", selectedCompanion?.value || "none");
   // console.log(FINAL_PROMPT);
   try {
+    toast.info("Generating your itinerary...");
     isLoading.value = true;
     error.value = null;
     showLoadingModal.value = true;
@@ -80,6 +83,9 @@ const generateTrip = async () => {
         ? err.message
         : "An error occurred while generating the trip";
     console.error("Error generating trip:", err);
+    toast.error(
+      "Failed to generate trip. Please try again with different config."
+    );
   } finally {
     isLoading.value = false;
     showLoadingModal.value = false;
@@ -142,7 +148,7 @@ const handleSelect = async (prediction) => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen bg-slate-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="floating-card max-w-7xl p-10 mx-auto">
       <!-- Header Section -->
       <div class="text-start mb-12">
