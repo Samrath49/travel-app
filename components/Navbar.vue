@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-bg-special">
+  <header class="bg-bg-special pb-5 md:pb-10">
     <!-- Desktop Navigation -->
     <nav class="container mx-auto px-4 pt-0 md:pt-8 h-20">
       <div class="flex items-center justify-between h-full">
