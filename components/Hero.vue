@@ -1,9 +1,9 @@
 <template>
   <section id="get-started" class="section-padding">
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-4 md:px-7">
       <!-- Hero Content -->
       <div class="flex flex-col lg:flex-row items-center">
-        <div class="lg:w-1/2 text-left mt-10">
+        <div class="lg:w-1/2 text-left mt-2 sm:mt-10">
           <h1 class="heading">
             Get started your exciting
             <span class="text-primary">journey</span> with us.
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Hero Images -->
-        <div class="relative lg:w-1/2 mt-10 lg:mt-0">
+        <div class="relative min-w-60 w-10/12 lg:w-1/2 mt-10 lg:mt-0">
           <NuxtImg
             src="/img/Main.png"
             class="img-fluid mx-auto"

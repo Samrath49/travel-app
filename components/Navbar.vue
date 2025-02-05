@@ -30,7 +30,7 @@
             class="flex items-center text-gray-800 hover:text-primary transition-colors"
           >
             <Icon name="ph:user-circle" class="size-7 mr-2 bg-primary" />
-            <span class="font-poppins text-lg font-medium">Profile</span>
+            <span class="font-poppins text-xl font-medium">Profile</span>
           </NuxtLink>
 
           <NuxtLink
@@ -91,29 +91,30 @@
         </button>
 
         <div class="p-5 pt-14">
+          <!-- Mobile Auth Buttons -->
+          <div class="mb-4 flex flex-col space-y-4">
+            <NuxtLink
+              v-if="isLoggedIn"
+              to="/profile"
+              class="flex items-center text-gray-800 hover:text-primary transition-colors"
+            >
+              <Icon name="ph:user-circle" class="size-7 mr-2 bg-primary" />
+              <span class="font-poppins text-xl font-medium">Profile</span>
+            </NuxtLink>
+          </div>
           <!-- Mobile Menu Items -->
           <div class="space-y-4">
             <NuxtLink
               v-for="item in LINK_ITEMS"
               :key="item.path"
               :to="item.path"
-              class="block text-lg font-semibold text-gray-800 hover:text-primary transition-colors"
+              class="block text-lg font-inter font-medium text-gray-800 hover:text-primary transition-colors"
               @click="isOpen = false"
             >
               {{ item.label }}
             </NuxtLink>
           </div>
-
-          <!-- Mobile Auth Buttons -->
-          <div class="mt-8 flex flex-col space-y-4">
-            <NuxtLink
-              v-if="isLoggedIn"
-              to="/profile"
-              class="flex w-full items-center text-gray-800 hover:text-primary transition-colors"
-            >
-              <Icon name="ph:user-circle" class="size-6 mr-2" />
-              <span>Profile</span>
-            </NuxtLink>
+          <div class="mt-4 flex flex-col space-y-4">
             <NuxtLink
               v-if="!isLoggedIn"
               to="/login"

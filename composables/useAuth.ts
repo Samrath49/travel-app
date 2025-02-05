@@ -1,7 +1,10 @@
+import { useToast } from "vue-toastification";
+
 export const useAuth = () => {
   const user = useSupabaseUser();
   const supabase = useSupabaseClient();
   const router = useRouter();
+  const toast = useToast();
 
   const isLoggedIn = computed(() => user.value?.aud === "authenticated");
   const userId = computed(() => user.value?.id);
@@ -13,8 +16,10 @@ export const useAuth = () => {
     try {
       await supabase.auth.signOut();
       router.push("/");
+      toast.success("Logged out successfully.");
     } catch (error) {
       console.error("Logout error:", error);
+      toast.error("Failed to log out. Please try again.");
     }
   };
 

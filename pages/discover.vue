@@ -48,10 +48,43 @@ const tripDuration = computed(() => {
   return +diffDays;
 });
 
+const validateTripDetails = () => {
+  const errors = [];
+
+  if (!destination.value?.address && !destination.value?.name) {
+    errors.push("Please select a destination");
+  }
+
+  if (!selectedBudget.value) {
+    errors.push("Please select your budget preference");
+  }
+
+  if (!selectedCompanion.value) {
+    errors.push("Please select who you are traveling with");
+  }
+
+  if (!dateRange.value.start || !dateRange.value.end) {
+    errors.push("Please select your travel dates");
+  } else if (dateRange.value.end < dateRange.value.start) {
+    errors.push("End date cannot be before start date");
+  }
+
+  return errors;
+};
+
 const generateTrip = async () => {
+  const validationErrors = validateTripDetails();
+
+  if (validationErrors.length > 0) {
+    validationErrors.forEach((error) => {
+      toast.error(error);
+    });
+    return;
+  }
+
   const FINAL_PROMPT = AI_PROMPT.replace(
     "{location}",
-    destination?.value?.address || ""
+    destination?.value?.address || destination?.value?.name || ""
   )
     .replace("{totalDays}", (tripDuration.value || 1).toString())
     .replace("{totalNights}", ((tripDuration.value || 1) - 1).toString())
@@ -59,7 +92,7 @@ const generateTrip = async () => {
     .replace("{end}", dateRange.value.end)
     .replace("{budget}", selectedBudget?.value || "moderate")
     .replace("{travelers}", selectedCompanion?.value || "none");
-  // console.log(FINAL_PROMPT);
+  console.log(FINAL_PROMPT);
   try {
     toast.info("Generating your itinerary...");
     isLoading.value = true;
@@ -148,14 +181,14 @@ const handleSelect = async (prediction) => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-100 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="floating-card max-w-7xl p-10 mx-auto">
+  <div class="min-h-screen bg-slate-100 py-4 md:py-12 px-2 sm:px-6 lg:px-8">
+    <div class="floating-card max-w-7xl p-4 py-5 sm:p-10 mx-auto">
       <!-- Header Section -->
-      <div class="text-start mb-12">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">
+      <div class="text-start mb-8 sm:mb-12">
+        <h1 class="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">
           Tell us your travel preferences 💰 🌴
         </h1>
-        <p class="text-gray-600">
+        <p class="text-gray-600 text-sm sm:text-base">
           Just provide some basic information, and our trip planner will
           generate a customized itinerary based on your preferences.
         </p>
@@ -165,7 +198,7 @@ const handleSelect = async (prediction) => {
       <div class="mb-8">
         <label
           for="destination"
-          class="block text-lg font-medium text-gray-900 mb-3"
+          class="block text-md sm:text-lg font-medium text-gray-900 mb-3"
         >
           What is destination of choice?
         </label>
@@ -197,7 +230,7 @@ const handleSelect = async (prediction) => {
 
       <!-- Date Range Input -->
       <div class="mb-8">
-        <label class="block text-lg font-medium text-gray-900 mb-3">
+        <label class="block text-md sm:text-lg font-medium text-gray-900 mb-3">
           When are you planning your trip?
         </label>
         <div class="relative">
@@ -210,8 +243,8 @@ const handleSelect = async (prediction) => {
             class="w-full"
           >
             <template #default="{ inputValue, inputEvents }">
-              <div class="flex items-center gap-2">
-                <div class="relative flex-1">
+              <div class="flex items-center sm:flex-row flex-col gap-2">
+                <div class="relative w-full sm:flex-1">
                   <input
                     :value="inputValue.start"
                     v-on="inputEvents.start"
@@ -221,7 +254,7 @@ const handleSelect = async (prediction) => {
                   />
                 </div>
                 <span class="text-gray-500">to</span>
-                <div class="relative flex-1">
+                <div class="relative w-full sm:flex-1">
                   <input
                     :value="inputValue.end"
                     v-on="inputEvents.end"
@@ -241,7 +274,7 @@ const handleSelect = async (prediction) => {
 
       <!-- Budget Selection -->
       <div class="mb-8">
-        <h2 class="text-lg font-medium text-gray-900 mb-3">
+        <h2 class="text-md sm:text-lg font-medium text-gray-900 mb-3">
           What is Your Budget?
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -250,7 +283,7 @@ const handleSelect = async (prediction) => {
             :key="budget.id"
             @click="selectedBudget = budget.id"
             :class="[
-              'p-4 border rounded-lg cursor-pointer transition-all duration-200',
+              'p-3 sm:p-4 border rounded-lg cursor-pointer transition-all duration-200',
               selectedBudget === budget.id
                 ? 'border-primary bg-primary/5'
                 : 'border-gray-200 hover:border-primary/20',
@@ -266,8 +299,8 @@ const handleSelect = async (prediction) => {
       </div>
 
       <!-- Travel Companion Selection -->
-      <div class="mb-12">
-        <h2 class="text-lg font-medium text-gray-900 mb-3">
+      <div class="mb-8 sm:mb-12">
+        <h2 class="text-md sm:text-lg font-medium text-gray-900 mb-3">
           Who do you plan on traveling with on your next adventure?
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -276,7 +309,7 @@ const handleSelect = async (prediction) => {
             :key="companion.id"
             @click="selectedCompanion = `${companion.id} (${companion.size})`"
             :class="[
-              'p-4 border rounded-lg cursor-pointer transition-all duration-200',
+              'p-3 sm:p-4 border rounded-lg cursor-pointer transition-all duration-200',
               selectedCompanion === `${companion.id} (${companion.size})`
                 ? 'border-primary bg-primary/5'
                 : 'border-gray-200 hover:border-primary/20',

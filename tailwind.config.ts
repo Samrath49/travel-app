@@ -44,7 +44,7 @@ export default {
       },
       padding: {
         section: "5rem",
-        "section-sm": "3rem",
+        "section-sm": "2rem",
       },
       height: {
         "card-icon": "50px",
