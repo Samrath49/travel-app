@@ -134,7 +134,7 @@
       </TransitionGroup>
 
       <!-- Delete Confirmation Modal -->
-      <Modal v-if="showDeleteModal" @close="showDeleteModal = false">
+      <Modal v-model="showDeleteModal">
         <template #header>
           <h3 class="text-lg font-medium text-gray-900">Confirm Deletion</h3>
         </template>
@@ -146,19 +146,43 @@
         </template>
         <template #footer>
           <button
-            @click="showDeleteModal = false"
+            @click="cancelDelete"
             class="mr-3 px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300"
           >
             Cancel
           </button>
           <button
             @click="handleDelete"
-            class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+            :disabled="isDeleting"
+            class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
           >
-            Delete
+            <span
+              v-if="isDeleting"
+              class="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"
+            ></span>
+            {{ isDeleting ? "Deleting..." : "Delete" }}
           </button>
         </template>
       </Modal>
+
+      <div
+        v-if="showToast"
+        class="fixed bottom-4 right-4 bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded shadow-lg"
+        role="alert"
+      >
+        <div class="flex">
+          <div class="py-1">
+            <Icon
+              name="heroicons:exclamation-circle"
+              class="h-6 w-6 text-red-500 mr-4"
+            />
+          </div>
+          <div>
+            <p class="font-bold">Error</p>
+            <p>{{ toastMessage }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -180,6 +204,14 @@ const {
 
 const showDeleteModal = ref(false);
 const itineraryToDelete = ref<string | null>(null);
+const isDeleting = ref(false);
+const showToast = ref(false);
+const toastMessage = ref("");
+
+// const toast = useToast();
+
+// toast.success("Itinerary deleted successfully");
+// toast.error("Failed to delete itinerary");
 
 const formatDateRange = (start: string, end: string) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -200,7 +232,19 @@ const getFirstPlaceImage = (itinerary: any) => {
 const confirmDelete = async (id: string) => {
   itineraryToDelete.value = id;
   showDeleteModal.value = true;
-  await nextTick();
+};
+
+const cancelDelete = () => {
+  showDeleteModal.value = false;
+  itineraryToDelete.value = null;
+};
+
+const showError = (message: string) => {
+  toastMessage.value = message;
+  showToast.value = true;
+  setTimeout(() => {
+    showToast.value = false;
+  }, 5000);
 };
 
 const getDurationInDays = (start: string, end: string) => {
@@ -218,12 +262,16 @@ const handleDelete = async () => {
   if (!itineraryToDelete.value) return;
 
   try {
+    isDeleting.value = true;
     await deleteItinerary(itineraryToDelete.value);
+    await refresh();
     showDeleteModal.value = false;
-    refresh();
+    itineraryToDelete.value = null;
   } catch (e) {
     console.error("Error deleting itinerary:", e);
-    // You can add a toast notification here to inform the user about the error
+    showError("Failed to delete itinerary. Please try again.");
+  } finally {
+    isDeleting.value = false;
   }
 };
 
@@ -231,7 +279,7 @@ const handleDelete = async () => {
 watch(error, (newError) => {
   if (newError) {
     console.error("Error fetching itineraries:", newError);
-    // You can add a toast notification here to inform the user about the error
+    showError("Failed to load itineraries. Please refresh the page.");
   }
 });
 </script>
