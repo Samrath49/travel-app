@@ -1,5 +1,10 @@
 {
-  "name": "nuxt-app",
+  "name": "travel",
+  "author": {
+    "name": "Samrath Chauhan",
+    "email": "samrathchauhan49@gmail.com",
+    "url": "https://github.com/samrath49"
+  },
   "private": true,
   "type": "module",
   "scripts": {
