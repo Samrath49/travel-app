@@ -22,6 +22,10 @@ const dateRange = ref({
   end: new Date(),
 });
 
+const showLoadingModal = ref(false);
+const isLoading = ref(false);
+const error = ref(null);
+
 const masks = {
   input: "MMM DD, YYYY",
 };
@@ -43,9 +47,6 @@ const tripDuration = computed(() => {
 });
 
 const generateTrip = async () => {
-  const isLoading = ref(false);
-  const error = ref(null);
-
   const FINAL_PROMPT = AI_PROMPT.replace(
     "{location}",
     destination?.value?.address || ""
@@ -60,7 +61,7 @@ const generateTrip = async () => {
   try {
     isLoading.value = true;
     error.value = null;
-
+    showLoadingModal.value = true;
     const geminiClient = useGemini();
     const response = await geminiClient.sendMessage(FINAL_PROMPT);
 
@@ -81,6 +82,7 @@ const generateTrip = async () => {
     console.error("Error generating trip:", err);
   } finally {
     isLoading.value = false;
+    showLoadingModal.value = false;
   }
 };
 
@@ -285,15 +287,43 @@ const handleSelect = async (prediction) => {
       </div>
 
       <!-- Generate Trip Button -->
-      <div class="text-center">
+      <div class="flex justify-center">
         <button
           @click="generateTrip"
-          class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/80 transition-colors duration-200"
+          :disabled="isLoading"
+          class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
         >
-          Generate Trip
+          <Icon
+            v-if="!isLoading"
+            name="lucide:brain"
+            class="animate-pulse rounded-full h-4 w-4 border-b-2 border-white mr-2"
+          ></Icon>
+          <span
+            v-else
+            class="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"
+          ></span>
+          {{ isLoading ? "Generating trip..." : "Generate Trip" }}
         </button>
       </div>
     </div>
+
+    <Modal v-model="showLoadingModal">
+      <template #header>
+        <h3 class="text-xl font-inter font-medium text-gray-900">
+          Please wait...
+        </h3>
+      </template>
+      <template #body>
+        <div class="flex flex-col gap-2 items-center">
+          <h4 class="text-lg font-volkhov">Generating your itinerary.</h4>
+          <NuxtImg src="/img/loading.gif" alt="Loading GIF" class="size-40" />
+          <p class="font-poppins text-center text-sm">
+            This might take a while please do not go back <br />
+            or close this modal.
+          </p>
+        </div>
+      </template>
+    </Modal>
   </div>
 </template>
 
