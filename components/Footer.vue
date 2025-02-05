@@ -81,8 +81,8 @@
             <a
               href="https://github.com/samrath49"
               target="_blank"
-              class="font-raj font-semibold tracking-wide hoverEffect"
-              >Samrath Chauhan</a
+              class="font-semibold tracking-wide hoverEffect"
+              >Samrath</a
             >
           </p>
         </div>
